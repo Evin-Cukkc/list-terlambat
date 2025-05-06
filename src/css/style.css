@@ -1,0 +1,149 @@
+/* RESET & FONTS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* BODY LAYOUT */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+/* CONTAINER UMUM */
+.container {
+  padding: 20px;
+  background-color: white;
+  border-radius: 0; /* opsional, bikin ngaa ada sudut melengkung biar konsisten */
+  box-shadow: none; /* opsional, hilangkan bayangan kalau ingin rata */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 0;
+}
+
+.form-container {
+  width: 90vw; /* Atau bisa juga 100% */
+  max-width: none;
+  padding: 20px;
+}
+.time-input::-webkit-calendar-picker-indicator {
+  display: none; /* Menyembunyikan indikator default di browser berbasis WebKit */
+}
+/* JUDUL */
+h1 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #333;
+  font-weight: 800;
+}
+
+/* FORM ELEMENTS */
+input,
+textarea,
+button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* FOCUS STYLE */
+input:focus,
+textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Styling untuk DatePicker */
+.react-datepicker-wrapper,
+.react-datepicker__input-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Fokus pada input DatePicker */
+.react-datepicker__input-container input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* TEXTAREA */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* BUTTON */
+button {
+  background: #087922;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background: #044d14;
+}
+
+/* RESPONSIVE - Ukuran tablet ke bawah */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  input,
+  textarea,
+  button {
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+
+/* RESPONSIVE - Ukuran HP kecil (≤ 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .form-container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  input,
+  textarea,
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+  }
