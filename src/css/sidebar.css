@@ -42,19 +42,26 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: #333;
+    background: radial-gradient(circle,
+    #ffffff 20%,   /* Pusat putih */
+    #292929 60%,   /* Abu gelap sebagai transisi */
+    #181818 80%,   /* Lebih gelap */
+    #000000 100%   /* Hitam pekat di paling luar */
+  );
     color: white;
     font-size: 24px;
     padding: 8px;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     z-index: 1001;
-    width: 50px;
-    height: 50px;
+    width: 45px;  /* Ukuran tombol lebih kecil */
+    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(2px); /* Opsional, untuk efek kaca */
+    opacity: 65%;
   }
   
   .close-sidebar-btn {

@@ -17,6 +17,25 @@ export default function FormInput() {
     hukuman: ''
   });
 
+  useEffect(() => {
+    // Fungsi untuk mendapatkan jam saat ini dalam format HH:mm
+    const updateTime = () => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0'); // Mengambil jam dalam format 2 digit
+      const minutes = now.getMinutes().toString().padStart(2, '0'); // Mengambil menit dalam format 2 digit
+      setFormData(prev => ({ ...prev, jam: `${hours}:${minutes}` }));
+    };
+
+    // Update jam setiap menit
+    const intervalId = setInterval(updateTime, 60000);
+
+    // Jalankan update waktu sekali ketika komponen pertama kali dimuat
+    updateTime();
+
+    // Bersihkan interval saat komponen dibersihkan
+    return () => clearInterval(intervalId);
+  }, []);
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData(prev => ({ ...prev, [id]: value }));
@@ -31,7 +50,7 @@ export default function FormInput() {
       return;
     }
 
-    // Format tanggal ke string "yyyy-mm-dd"
+    // Format tanggal ke string "yyyy-mm-dd" hanya kalau tanggal bukan null
     const formattedData = {
       ...formData,
       tanggal: tanggal instanceof Date
@@ -69,6 +88,7 @@ export default function FormInput() {
         placeholder="Nama"
         value={formData.nama}
         onChange={handleChange}
+        className="nama-input"
       />
 
       <SelectKelas
@@ -84,13 +104,14 @@ export default function FormInput() {
 
       {/* Input Jam */}
       <div className="form-jam">
-      <input
-        type="time"
-        id="jam"
-        value={formData.jam}
-        onChange={handleChange}
-        className="time-input"
-      />
+       {/* Input Jam */}
+        <input
+          type="time"
+          id="jam"
+          value={formData.jam}
+          onChange={handleChange}
+          className="time-input"
+        />
     </div>
       {/* Textarea Alasan */}
       <textarea
@@ -98,15 +119,18 @@ export default function FormInput() {
         placeholder="Alasan"
         value={formData.alasan}
         onChange={handleChange}
+        className="textarea-alasan"
       />
-      
+
       {/* Date Picker */}
       <DatePicker
         selected={formData.tanggal}
         onChange={(date) => setFormData(prev => ({ ...prev, tanggal: date }))}
         className="w-full px-4 py-2 border rounded-lg shadow focus:ring-2 focus:ring-blue-500"
+        placeholderText="Tanggal"
         dateFormat="yyyy-MM-dd"
       />
+
 
       {/* Pilihan Hukuman */}
       <SelectHukuman

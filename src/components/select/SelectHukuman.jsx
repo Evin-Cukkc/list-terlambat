@@ -2,9 +2,13 @@
 import Select from "react-select";
 
 const optionsHukuman = [
-  { value: "Teguran", label: "Teguran" },
-  { value: "Piket", label: "Piket" },
-  { value: "Menghafal", label: "Menghafal" },
+  { value: "Jongkok EakEak", label: "Jongkok EakEak" },
+  { value: "Nyiram Bunga", label: "Nyiram Bunga" },
+  { value: "Nyapu Kantor", label: "Nyapu Kantor" },
+  { value: "Nyapu Gerbang", label: "Nyapu Gerbang" },
+  { value: "Nyuci Piring", label: "Nyuci Piring" },
+  { value: "Membersihkan Toilet", label: "Membersihkan Toilet" },
+  { value: "Dll (Opsional)", label: "Dll (Opsional)" },
 ];
 
 export default function SelectHukuman({ value, onChange }) {
@@ -31,7 +35,6 @@ export default function SelectHukuman({ value, onChange }) {
           }),
           placeholder: base => ({
             ...base,
-            color: "#333",
             fontStyle: "normal", // pastikan fontStyle normal untuk tidak miring
           }),
           singleValue: base => ({

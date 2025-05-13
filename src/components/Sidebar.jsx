@@ -21,7 +21,7 @@ const Sidebar = () => {
     <>
       {!isOpen && (
         <button className="open-sidebar-btn" onClick={toggleSidebar}>
-          &#9776;
+          &#x25CF;
         </button>
       )}
 

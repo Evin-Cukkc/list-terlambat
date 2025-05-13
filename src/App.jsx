@@ -1,60 +1,75 @@
 import React, { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Clock from './components/Clock';
 import FormInput from './components/FormInput';
 
-import Beranda from './pages/Beranda';
 import Profil from './pages/Profil';
 import DataSiswa from './pages/DataSiswa';
 
 export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [halamanAktif, setHalamanAktif] = useState('beranda'); // state utama halaman
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 500);
+    const timer = setTimeout(() => {
+      setLoading(false);
+      setTimeout(() => setShowContent(true), 100);
+    }, 2500);
     return () => clearTimeout(timer);
   }, []);
 
-  const renderKonten = () => {
-    switch (halamanAktif) {
-      case 'profil':
-        return <Profil />;
-      case 'data-siswa':
-        return <DataSiswa />;
-      default:
-        return <Beranda />;
-    }
-  };
-
   return (
-    <div className="app">
-      {loading ? (
-        <div id="loader" className="loader">Loading...</div>
-      ) : (
-        <>
-          {/* Sidebar menerima setter halaman aktif */}
-          <Sidebar
-            isOpen={sidebarOpen}
-            onClose={() => setSidebarOpen(false)}
-            setHalamanAktif={setHalamanAktif}
-          />
+  <div className="app">
+    {loading ? (
+      <div id="loader" className="loader">
+        Bakal update kalo developer ga mager!!!
+      </div>
+    ) : (
+      <>
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <div className={`app-container ${showContent ? 'fade-in' : ''}`}>
+          <main
+            className="content"
+            onClick={() => {
+              if (sidebarOpen) setSidebarOpen(false);
+            }}
+          >
+            {/* ⬇️ Hapus Clock & FormInput dari sini */}
 
-          <div className="app-container">
-            <main
-              className="content"
-              onClick={() => {
-                if (sidebarOpen) setSidebarOpen(false);
-              }}
-            >
-              <Clock />
-              <FormInput />
-              {renderKonten()}
-            </main>
-          </div>
-        </>
-      )}
-    </div>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <div className="page">
+                    <Clock />
+                    <FormInput />
+                  </div>
+                }
+              />
+              <Route
+                path="/profil"
+                element={
+                  <div className="page">
+                    <Profil />
+                  </div>
+                }
+              />
+              <Route
+                path="/data-siswa"
+                element={
+                  <div className="page">
+                    <DataSiswa />
+                  </div>
+                }
+              />
+            </Routes>
+          </main>
+        </div>
+      </>
+    )}
+  </div>
   );
+
 }

@@ -5,7 +5,7 @@ const optionsJurusan = [
   { value: "RPL", label: "RPL" },
   { value: "TKJ", label: "TKJ" },
   { value: "TBSM", label: "TBSM" },
-  { value: "TEI", label: "TEI" },
+  { value: "TKRO", label: "TKRO" },
 ];
 
 export default function SelectJurusan({ value, onChange }) {
@@ -32,7 +32,6 @@ export default function SelectJurusan({ value, onChange }) {
           }),
           placeholder: base => ({
             ...base,
-            color: "#333",
             fontStyle: "normal",  // Ganti "italic" menjadi "normal" atau hapus baris ini
           }),
           singleValue: base => ({
